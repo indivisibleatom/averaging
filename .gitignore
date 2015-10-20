@@ -1,0 +1,10 @@
+[Dd]ebug*/
+[Rr]elease*/
+[Bb]in
+*.sdf
+*.opensdf
+*.filters
+*.user
+*.suo
+*.log
+ipch/
