@@ -26,6 +26,7 @@ public:
   ViewportManager( const Rect<int>& rect );
 
   void setAppController( std::unique_ptr< IAppController > pAppController ) { m_pAppController = std::move( pAppController ); }
+  void onIdle() override { m_pAppController->onIdle(); }
 
   void addViewport( std::unique_ptr< Viewport > viewport );
   void addViewport( INotifiable& listener ); //Handle sizing automatically

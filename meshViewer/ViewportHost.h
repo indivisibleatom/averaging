@@ -18,6 +18,7 @@ class IAppController : public ICommandable, public IInteractable, public INotifi
 public:
   virtual ~IAppController() = 0 {}
   virtual void init() = 0;
+  virtual void onIdle() = 0;
 };
 
 //Viewport interface
@@ -27,6 +28,7 @@ public:
   virtual ~IViewport() = 0 {}
   virtual const Rect<int>& getRect() const throw() = 0;
   virtual void init() = 0;
+  virtual void onIdle() = 0 {}
 };
 
 void createViewportHost( std::unique_ptr< IViewportHost >& pViewportHost, IViewport* pViewport );

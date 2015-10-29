@@ -12,7 +12,7 @@
 
 const float PI = 3.14159265359f;
 
-template <class T> T strtoT( const char* str, char **endPtr );
+template <class T> T strtoT( const char* str, char **endPgettr );
 
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
 

@@ -2,6 +2,9 @@
 
 Plane::Plane( double a, double b, double c, double d ) : m_normal( a, b, c ), m_distance( d )
 {
+  float norm = m_normal.norm();
+  m_normal.normalize();
+  m_distance /= norm;
 }
 
 void Plane::draw()
@@ -29,10 +32,8 @@ int Plane::onKeyPressed( int key ) { return 0; }
 
 std::vector<Vector<float>> Plane::getAxesFromNormal(const Vector<float>& normal)
 {
-  std::vector<Vector<float>> retVal;
-  retVal.push_back(Vector<float>(1,0,0));
-  retVal.push_back(Vector<float>(0,1,0));
-  retVal.push_back(Vector<float>(0,0,1));
+  std::vector<Vector<float>> retVal(3);
+  GetOrthonormalBasisFromNormal(normal, retVal[0], retVal[1], retVal[2]);
   return retVal;
 }
 

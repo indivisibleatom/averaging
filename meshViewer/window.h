@@ -36,6 +36,7 @@ public:
   Window( IViewport* pViewport, const std::string& name );
 
   bool isKeyPressed( int key ) const throw() override;
+  void onIdle(void *pData);
 
   void draw();
   int handle( int );

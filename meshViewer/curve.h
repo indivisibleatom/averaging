@@ -12,9 +12,17 @@ public:
   Curve& operator=(const Curve& other);
   void swap(Curve& other);
 
+  int next(int index);
+  int prev(int index);
+
   int nv() const throw();
   void addPoint(const Point<float>& point);
   void setPoint(int index, const Point<float>& point);
+  void tuck(float amount);
+  void untuck(float amount);
+  void refine();
+  void dual();
+  void dual2() { dual();  dual(); }
 
   void draw() override;
 

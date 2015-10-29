@@ -4,6 +4,8 @@
 #include "ViewportManager.h"
 #include "ViewportHost.h"
 
+class Curve;
+
 class AveragingController : public IAppController
 {
 public:
@@ -19,11 +21,13 @@ public:
   int onKeyPressed(int ch) override;
 
   int onCommand(const std::string& command) override;
+  void onIdle() override;
 
   void onNotify(int message) override;
 
 private:
   ViewportManager& m_viewportManager;
+  Curve* m_pCurve;
 };
 
 #endif//_AVERAGINGCONTROLLER_H_

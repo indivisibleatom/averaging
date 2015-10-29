@@ -61,6 +61,7 @@ public:
   int onKeyPressed( int ch ) override;
   int onCommand( const std::string& command ) override;
   void init() override;
+  void onIdle() override {}
   const Rect<int>& getRect() const throw() override { return m_rect; }
   void setRect( const Rect<int>& rect ) throw() { m_rect = rect; }
 

@@ -10,6 +10,16 @@ void createViewportHost( std::unique_ptr< IViewportHost >& pViewportHost, IViewp
   pViewportHost = std::move( pWindow );
 }
 
+namespace
+{
+  std::function<void(void*)> onIdleCallback;
+  void staticIdleCallback(void* pData)
+  {
+    onIdleCallback(pData);
+    Fl::repeat_timeout(2.0, staticIdleCallback);
+  }
+}
+
 void MouseGestureDetector::onEvent(int event)
 {
   switch(event) 
@@ -37,11 +47,18 @@ Window::Window( IViewport* pViewport, const std::string& name ) : Fl_Gl_Window( 
                                                                                 pViewport->getRect().width(), pViewport->getRect().height(), name.c_str() ),
                                                                   m_pViewport( pViewport )
 {
+  onIdleCallback = std::bind(&Window::onIdle, this, std::placeholders::_1);
+  Fl::add_timeout(0.1, staticIdleCallback);
 }
 
 bool Window::isKeyPressed( int key ) const throw()
 {
   return Fl::event_key( key );
+}
+
+void Window::onIdle(void* pData)
+{
+  m_pViewport->onIdle();
 }
 
 void Window::draw()
